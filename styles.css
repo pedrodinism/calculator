@@ -1,0 +1,40 @@
+* {
+    box-sizing: border-box;
+}
+
+.calculator {
+    width: 500px;
+    height: 600px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    background-color: lightgoldenrodyellow;
+}
+
+.display, 
+.buttons {
+    border: 1px solid black;
+    height: 20px;
+    margin: 20px;
+}
+
+.display {
+    height: 100px;
+    background-color: white;
+}
+
+.buttons {
+    height: 500px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.buttons div {
+    border: 1px solid black;
+    width: 33.33%;
+    height: 33.33%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px
+}
