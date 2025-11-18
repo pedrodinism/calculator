@@ -36,15 +36,39 @@ function calculate (operator, number1, number2) {
 }
 
 function display (value) {
-    document.querySelector('.display').textContent = value
+    if (value === undefined) {
+        if (number1 != "" && operator === "") {
+            document.querySelector('.display').textContent = number1
+            return
+        }
+        if (number1 != "" && operator != "" && number2 === "") {
+            document.querySelector('.display').textContent = number1 + " " + operator     
+            return       
+        }
+        if (number1 != "" && operator != "" && number2 != "" && result === "") {
+            document.querySelector('.display').textContent = number1 + " " + operator + " " + number2
+            return  
+        }
+        if (number1 != "" && operator != "" && number2 != "" && result != "") {
+            document.querySelector('.display').textContent = number1 + " " + operator + " " + number2 + " = " + result
+            return
+        }        
+    }
+    else {
+        document.querySelector('.display').textContent = value
+        return
+    }
+
 }
 
 function cleanVars () {
     number1 = ""
     number2 = ""
     operator = ""
+    result = ""
     display("")
 }
+
 
 
 document.querySelector('.buttons').addEventListener("click", (event) => {
@@ -53,30 +77,51 @@ document.querySelector('.buttons').addEventListener("click", (event) => {
         cleanVars()
         return
     }
-    if (operators.includes(value)) {
+    if (operators.includes(value) && result === "" && number2 === "") {
         operator = value
-        display(operator)
+        display()
         return
     }
-    if (Number.isInteger(Number(value)) && operator === "") {
+    if (operators.includes(value) && result === "" && number2 != "") {
+        number1 = calculate(operator, number1, number2)
+        operator = value 
+        number2 = ""
+        display()
+        return
+    }
+    if (Number.isInteger(Number(value)) && operator === "" && result === "") {
         number1 = number1 + value
-        display(number1)
+        display()
         return
     }
-    if (Number.isInteger(Number(value)) && operator != "") {
+    if (Number.isInteger(Number(value)) && operator != "" && result === "") {
         number2 = number2 + value
-        display(number2)
+        display()
         return
     }
     if (value === "=") {
         result = calculate(operator, number1, number2)
-        display(result)
+        display()
         return
     }
-    if (result != 0) {
-        cleanVars()
-        number1 = value
-        display(number1)
+    if (result != "") {
+        if (Number.isInteger(Number(value))) {
+            cleanVars()
+            number1 = value
+            operator = ""
+            number2 = ""
+            result = ""
+            display()
+            return
+        }
+        if (operators.includes(value)) {
+            number1 = result
+            operator = value
+            number2 = ""
+            result = ""
+            display()
+            return
+        }
     } 
 })
 
