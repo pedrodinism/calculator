@@ -31,8 +31,8 @@
 
 .buttons div {
     border: 1px solid black;
-    width: 33.33%;
-    height: 33.33%;
+    width: 25%;
+    height: 25%;
     display: flex;
     justify-content: center;
     align-items: center;
