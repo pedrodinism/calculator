@@ -7,11 +7,17 @@ function subtract (a,b) {
 }
 
 function divide (a,b) {
-    return a/b
+    if (b === 0) {
+        return "ERROR: attempted to divide by 0"
+    }
+    else {
+        return Math.round(a/b * 100) / 100
+    } 
+    
 }
 
 function multiply (a,b) {
-    return a * b
+    return Math.round(a * b * 100) / 100
 }
 
 let number1 = ""
