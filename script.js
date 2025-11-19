@@ -99,7 +99,7 @@ document.querySelector('.buttons').addEventListener("click", (event) => {
         display()
         return
     }
-    if (value === "=") {
+    if (value === "=" && number1 != "" && number2 != "" && operators.includes(operator)) {
         result = calculate(operator, number1, number2)
         display()
         return
